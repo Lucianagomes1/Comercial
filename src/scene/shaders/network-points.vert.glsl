@@ -1,11 +1,11 @@
 uniform float uTime;
-uniform float uScroll;
 uniform float uMorph;
 uniform vec2 uMouse;
+uniform float uPixelRatio;
+uniform float uSize;
 
-varying vec3 vNormal;
-varying vec3 vViewPosition;
 varying float vNoise;
+varying vec3 vNormal;
 
 // Ashima Arts / Stefan Gustavson simplex noise
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -74,19 +74,21 @@ float snoise(vec3 v) {
 }
 
 void main() {
-  vec3 pos = position;
+  vec3 n = normalize(position);
 
   float slowTime = uTime * 0.15;
-  vec3 noiseCoord = normal * 1.4 + vec3(0.0, 0.0, slowTime);
-  float mouseInfluence = (uMouse.x * normal.x + uMouse.y * normal.y) * 0.12;
+  vec3 noiseCoord = n * 1.4 + vec3(0.0, 0.0, slowTime);
+  float mouseInfluence = (uMouse.x * n.x + uMouse.y * n.y) * 0.12;
 
   float displacement = snoise(noiseCoord) * (0.045 + uMorph * 0.11) + mouseInfluence * 0.05;
-  pos += normal * displacement;
+  vec3 pos = position + n * displacement;
 
   vNoise = displacement;
-  vNormal = normalize(normalMatrix * normal);
+  vNormal = n;
 
   vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-  vViewPosition = -mvPosition.xyz;
   gl_Position = projectionMatrix * mvPosition;
+
+  float sizeAttenuation = uSize * uPixelRatio * (300.0 / -mvPosition.z);
+  gl_PointSize = clamp(sizeAttenuation, 1.5, 7.0);
 }

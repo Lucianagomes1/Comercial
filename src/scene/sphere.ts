@@ -1,6 +1,8 @@
 import * as THREE from "three"
-import vertexShader from "./shaders/sphere.vert.glsl?raw"
-import fragmentShader from "./shaders/sphere.frag.glsl?raw"
+import pointsVertexShader from "./shaders/network-points.vert.glsl?raw"
+import pointsFragmentShader from "./shaders/network-points.frag.glsl?raw"
+import linesVertexShader from "./shaders/network-lines.vert.glsl?raw"
+import linesFragmentShader from "./shaders/network-lines.frag.glsl?raw"
 
 export interface SphereScene {
   group: THREE.Group
@@ -17,6 +19,57 @@ function supportsWebGL(): boolean {
   } catch {
     return false
   }
+}
+
+// Distribui pontos de forma uniforme sobre a esfera (espiral de Fibonacci)
+function buildSpherePositions(count: number, radius: number): Float32Array {
+  const positions = new Float32Array(count * 3)
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5))
+
+  for (let i = 0; i < count; i++) {
+    const y = 1 - (i / (count - 1)) * 2
+    const radiusAtY = Math.sqrt(1 - y * y)
+    const theta = goldenAngle * i
+
+    positions[i * 3] = Math.cos(theta) * radiusAtY * radius
+    positions[i * 3 + 1] = y * radius
+    positions[i * 3 + 2] = Math.sin(theta) * radiusAtY * radius
+  }
+
+  return positions
+}
+
+// Conecta cada nó aos seus vizinhos mais próximos, formando a malha da rede
+function buildConnections(positions: Float32Array, count: number, neighbors: number, maxDist: number): Float32Array {
+  const edges = new Set<string>()
+  const linePositions: number[] = []
+
+  for (let i = 0; i < count; i++) {
+    const ax = positions[i * 3]
+    const ay = positions[i * 3 + 1]
+    const az = positions[i * 3 + 2]
+
+    const candidates: { j: number; d: number }[] = []
+    for (let j = 0; j < count; j++) {
+      if (i === j) continue
+      const bx = positions[j * 3]
+      const by = positions[j * 3 + 1]
+      const bz = positions[j * 3 + 2]
+      const d = Math.hypot(ax - bx, ay - by, az - bz)
+      if (d < maxDist) candidates.push({ j, d })
+    }
+    candidates.sort((a, b) => a.d - b.d)
+
+    for (let k = 0; k < Math.min(neighbors, candidates.length); k++) {
+      const j = candidates[k].j
+      const key = i < j ? `${i}-${j}` : `${j}-${i}`
+      if (edges.has(key)) continue
+      edges.add(key)
+      linePositions.push(ax, ay, az, positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2])
+    }
+  }
+
+  return new Float32Array(linePositions)
 }
 
 export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
@@ -41,26 +94,56 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
   group.position.set(1.15, -1.05, 0)
   scene.add(group)
 
-  const geometry = new THREE.IcosahedronGeometry(0.92, 6)
+  const network = new THREE.Group()
+  group.add(network)
+
+  const NODE_COUNT = 140
+  const RADIUS = 0.95
+  const nodePositions = buildSpherePositions(NODE_COUNT, RADIUS)
+  const linePositions = buildConnections(nodePositions, NODE_COUNT, 3, RADIUS * 0.5)
+
   const uniforms = {
     uTime: { value: 0 },
     uScroll: { value: 0 },
     uMorph: { value: 0.15 },
     uMouse: { value: new THREE.Vector2(0, 0) },
+    uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+    uSize: { value: 1.0 },
     uColorA: { value: new THREE.Color("#8ecbff") },
     uColorB: { value: new THREE.Color("#c9a8ff") },
     uColorC: { value: new THREE.Color("#ff9ed2") },
     uColorD: { value: new THREE.Color("#ffe08a") },
   }
 
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
+  const pointsGeometry = new THREE.BufferGeometry()
+  pointsGeometry.setAttribute("position", new THREE.BufferAttribute(nodePositions, 3))
+
+  const pointsMaterial = new THREE.ShaderMaterial({
+    vertexShader: pointsVertexShader,
+    fragmentShader: pointsFragmentShader,
     uniforms,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
   })
 
-  const mesh = new THREE.Mesh(geometry, material)
-  group.add(mesh)
+  const points = new THREE.Points(pointsGeometry, pointsMaterial)
+  network.add(points)
+
+  const linesGeometry = new THREE.BufferGeometry()
+  linesGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3))
+
+  const linesMaterial = new THREE.ShaderMaterial({
+    vertexShader: linesVertexShader,
+    fragmentShader: linesFragmentShader,
+    uniforms,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  })
+
+  const lines = new THREE.LineSegments(linesGeometry, linesMaterial)
+  network.add(lines)
 
   let width = window.innerWidth
   let height = window.innerHeight
@@ -78,6 +161,7 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     renderer.setSize(width, height)
     camera.aspect = width / height
     camera.updateProjectionMatrix()
+    uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)
   }
 
   function tick() {
@@ -92,8 +176,8 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     uniforms.uMorph.value = currentMorph
 
     if (!reducedMotion) {
-      mesh.rotation.y += 0.0018
-      mesh.rotation.x += 0.0006
+      network.rotation.y += 0.0018
+      network.rotation.x += 0.0006
     }
 
     renderer.render(scene, camera)
@@ -112,13 +196,15 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
       targetMorph = strength
     },
     getRotationDegrees() {
-      return THREE.MathUtils.radToDeg(mesh.rotation.y)
+      return THREE.MathUtils.radToDeg(network.rotation.y)
     },
     destroy() {
       cancelAnimationFrame(frameId)
       window.removeEventListener("resize", resize)
-      geometry.dispose()
-      material.dispose()
+      pointsGeometry.dispose()
+      pointsMaterial.dispose()
+      linesGeometry.dispose()
+      linesMaterial.dispose()
       renderer.dispose()
     },
   }
