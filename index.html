@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sites institucionais dark-futuristas e agentes de IA sob medida. Design autoral, performance e automação que reduz custo operacional e vende 24/7." />
+    <meta name="theme-color" content="#050505" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LUCIANA.DEV — Sites Institucionais & Agentes de IA" />
+    <meta property="og:description" content="Design autoral em WebGL e agentes de IA que atendem, qualificam e vendem 24/7 — por uma fração do custo de um funcionário." />
+    <meta property="og:locale" content="pt_BR" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300..400&display=swap" rel="stylesheet" />
+
+    <title>LUCIANA.DEV — Sites Institucionais & Agentes de IA</title>
+  </head>
+  <body>
+    <div class="cursor" aria-hidden="true">
+      <span class="cursor__dot"></span>
+      <span class="cursor__ring"></span>
+    </div>
+
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+    <header class="nav" data-nav>
+      <a href="#inicio" class="nav__mark">LUCIANA<span>.</span>DEV</a>
+      <nav class="nav__links" aria-label="Navegação principal">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#economia">Economia</a>
+        <a href="#casos">Casos</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato" class="nav__cta">Contato</a>
+      </nav>
+      <button class="nav__toggle" type="button" data-nav-toggle aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <div class="nav__mobile" data-nav-mobile>
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#economia">Economia</a>
+      <a href="#casos">Casos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+
+    <canvas id="sphere-canvas" aria-hidden="true"></canvas>
+
+    <main id="main">
+      <!-- HERO -->
+      <section id="inicio" class="section section--dark hero">
+        <div class="hero__hud hero__hud--deg" data-hud-deg aria-hidden="true">
+          <span class="hero__hud-value" data-deg-value>000°</span>
+          <span class="hero__hud-label">ORIENTAÇÃO</span>
+        </div>
+
+        <div class="hero__hud hero__hud--eq" aria-hidden="true">
+          <div class="eq" data-eq>
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <span class="hero__hud-label">ATIVIDADE IA</span>
+        </div>
+
+        <div class="hero__content">
+          <p class="eyebrow">AI STUDIO · SITES &amp; AGENTES INTELIGENTES</p>
+          <h1 class="hero__title">
+            <span>O FUTURO</span>
+            <span>JÁ CHEGOU.</span>
+          </h1>
+          <p class="hero__subtitle">Onde a sua empresa encontra a inteligência artificial.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" data-whatsapp href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn btn--ghost" href="#economia">Ver quanto você economiza</a>
+          </div>
+        </div>
+
+        <div class="hero__stats" data-count-group>
+          <div class="stat">
+            <span class="stat__value" data-count-to="24">0</span><span class="stat__suffix">/7</span>
+            <span class="stat__label">Atendimento sem pausa</span>
+          </div>
+          <div class="stat">
+            <span class="stat__prefix">-</span><span class="stat__value" data-count-to="48">0</span><span class="stat__suffix">%</span>
+            <span class="stat__label">Custo operacional</span>
+          </div>
+          <div class="stat">
+            <span class="stat__prefix">&lt;</span><span class="stat__value" data-count-to="1">0</span><span class="stat__suffix">s</span>
+            <span class="stat__label">Tempo de resposta</span>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true"><span></span>scroll</div>
+      </section>
+
+      <!-- MANIFESTO -->
+      <section class="section section--light manifesto">
+        <p class="eyebrow eyebrow--dark">MANIFESTO</p>
+        <blockquote class="manifesto__quote">
+          Toda empresa que atende, vende ou responde repetidamente<em> já podia estar automatizada.</em>
+        </blockquote>
+        <div class="manifesto__body">
+          <p>Cada minuto que um funcionário gasta respondendo a mesma pergunta é um minuto que a sua empresa paga — em salário, em encargos, em oportunidade perdida. Um site institucional bem construído não é uma vitrine estática: é a primeira impressão que decide se um visitante vira cliente. E um agente de IA bem treinado não tira folga, não erra por cansaço e não fecha às 18h.</p>
+          <p>Unimos as duas coisas: <strong>design de alta performance</strong> e <strong>automação inteligente</strong>, para empresas que querem parar de operar no manual.</p>
+        </div>
+      </section>
+
+      <!-- ECONOMIA -->
+      <section id="economia" class="section section--dark economia">
+        <p class="eyebrow">ECONOMIA REAL</p>
+        <h2 class="section__title">Quanto sua empresa deixa na mesa<br />com trabalho manual?</h2>
+        <p class="section__lede">Comparamos o custo real de um funcionário — salário, encargos e horas efetivas — com o custo de um agente de IA operando as mesmas horas. Os números abaixo usam a mesma metodologia que aplicamos com clientes.</p>
+
+        <div class="econ-grid">
+          <div class="panel panel--example">
+            <div class="panel__header">
+              <span class="panel__tag">EXEMPLO PRÁTICO</span>
+              <h3>2 funcionários × 1 agente de IA</h3>
+            </div>
+            <table class="econ-table" data-example-table>
+              <thead>
+                <tr>
+                  <th scope="col">Variável</th>
+                  <th scope="col">Funcionários</th>
+                  <th scope="col">Agente IA</th>
+                  <th scope="col">Economia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Custo mensal</td><td data-ex="custoMensalA">—</td><td data-ex="custoMensalB">—</td><td data-ex="custoMensalDiff">—</td></tr>
+                <tr><td>Horas efetivas/mês</td><td data-ex="horasA">—</td><td data-ex="horasB">—</td><td data-ex="horasDiff">—</td></tr>
+                <tr><td>Custo por hora</td><td data-ex="custoHoraA">—</td><td data-ex="custoHoraB">—</td><td data-ex="custoHoraDiff">—</td></tr>
+                <tr class="econ-table__highlight"><td>Custo anual</td><td data-ex="custoAnualA">—</td><td data-ex="custoAnualB">—</td><td data-ex="custoAnualDiff">—</td></tr>
+              </tbody>
+            </table>
+            <p class="panel__result">Economia estimada: <strong data-ex="economiaAnual">—</strong>/ano</p>
+          </div>
+
+          <div class="panel panel--calculator">
+            <div class="panel__header">
+              <span class="panel__tag">CALCULADORA</span>
+              <h3>Calcule a economia da sua empresa</h3>
+            </div>
+
+            <form class="calc-form" data-calc-form>
+              <fieldset class="calc-fieldset">
+                <legend>Funcionários</legend>
+                <label>Qtde. funcionários
+                  <input type="number" min="0" step="1" value="2" data-calc-input="qtdeFuncionarios" />
+                </label>
+                <label>Salário médio mensal (R$)
+                  <input type="number" min="0" step="50" value="1500" data-calc-input="salarioMedio" />
+                </label>
+                <label>Impostos sobre salário (%)
+                  <input type="number" min="0" max="100" step="1" value="48" data-calc-input="impostosPct" />
+                </label>
+                <label>Horas efetivas/mês
+                  <input type="number" min="1" step="1" value="220" data-calc-input="horasFuncionario" />
+                </label>
+              </fieldset>
+
+              <fieldset class="calc-fieldset">
+                <legend>Agentes de IA</legend>
+                <label>Qtde. de agentes
+                  <input type="number" min="0" step="1" value="1" data-calc-input="qtdeAgentes" />
+                </label>
+                <label>Custo mensal por agente (R$)
+                  <input type="number" min="0" step="50" value="600" data-calc-input="custoPorAgente" />
+                </label>
+                <label>Taxa de serviço (%)
+                  <input type="number" min="0" max="100" step="1" value="0" data-calc-input="taxaServicoPct" />
+                </label>
+                <label>Horas efetivas/mês
+                  <input type="number" min="1" step="1" value="730" data-calc-input="horasAgente" />
+                </label>
+              </fieldset>
+            </form>
+
+            <div class="calc-result" data-calc-result>
+              <div class="calc-result__row">
+                <span>Economia mensal</span>
+                <strong data-calc-out="economiaMensal">—</strong>
+              </div>
+              <div class="calc-result__row calc-result__row--highlight">
+                <span>Economia anual</span>
+                <strong data-calc-out="economiaAnual">—</strong>
+              </div>
+              <div class="calc-result__row">
+                <span>Redução de custo</span>
+                <strong data-calc-out="economiaPct">—</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <section id="servicos" class="section section--light servicos">
+        <p class="eyebrow eyebrow--dark">O QUE FAZEMOS</p>
+        <h2 class="section__title section__title--dark">Dois pilares.<br />Um só objetivo: sua empresa vendendo mais.</h2>
+
+        <div class="servicos-grid">
+          <article class="service-card">
+            <span class="service-card__index">01</span>
+            <h3>Sites Institucionais</h3>
+            <p>Design autoral, dark-futurista, construído para converter — não apenas para existir.</p>
+            <ul>
+              <li>Design 3D/WebGL sob medida</li>
+              <li>Performance e SEO técnico</li>
+              <li>Copywriting focado em conversão</li>
+              <li>Responsivo, rápido e fácil de manter</li>
+            </ul>
+          </article>
+
+          <article class="service-card service-card--accent">
+            <span class="service-card__index">02</span>
+            <h3>Agentes de IA</h3>
+            <p>Atendimento, qualificação e vendas — rodando 24/7 por uma fração do custo de um funcionário.</p>
+            <ul>
+              <li>Atendimento 24/7 no WhatsApp e no site</li>
+              <li>Qualificação e agendamento automático</li>
+              <li>Integração com CRM, planilhas e agenda</li>
+              <li>Redução comprovada de custo operacional</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROCESSO -->
+      <section class="section section--dark processo">
+        <p class="eyebrow">COMO FUNCIONA</p>
+        <h2 class="section__title">Do primeiro contato ao ar,<br />sem enrolação.</h2>
+
+        <ol class="timeline">
+          <li class="timeline__item">
+            <span class="timeline__index">01</span>
+            <h3>Descoberta</h3>
+            <p>Entendemos seu negócio, seu processo atual e onde a automação ou o site geram mais retorno.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__index">02</span>
+            <h3>Design &amp; Arquitetura</h3>
+            <p>Direção de arte, estrutura de conteúdo e fluxo do agente de IA desenhados para o seu público.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__index">03</span>
+            <h3>Desenvolvimento</h3>
+            <p>Construção do site ou do agente com stack moderna, testado em cenários reais de uso.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__index">04</span>
+            <h3>Lançamento</h3>
+            <p>Publicação, domínio, integrações e validação final antes de ir ao ar.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__index">05</span>
+            <h3>Suporte &amp; Evolução</h3>
+            <p>Acompanhamento contínuo, ajustes e evolução com base em dados reais de uso.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- CASOS -->
+      <section id="casos" class="section section--light casos">
+        <p class="eyebrow eyebrow--dark">CASOS</p>
+        <h2 class="section__title section__title--dark">Em breve, os primeiros projetos por aqui.</h2>
+        <p class="section__lede section__lede--dark">Esta seção está reservada para os próximos cases — sites e agentes de IA entregues para clientes reais.</p>
+
+        <div class="casos-grid">
+          <div class="case-card case-card--placeholder">
+            <span>Case em construção</span>
+          </div>
+          <div class="case-card case-card--placeholder">
+            <span>Case em construção</span>
+          </div>
+          <div class="case-card case-card--placeholder">
+            <span>Case em construção</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+      <section id="sobre" class="section section--dark sobre">
+        <p class="eyebrow">QUEM FAZ</p>
+        <div class="sobre-grid">
+          <h2 class="section__title">Luciana — desenvolvedora e diretora criativa deste estúdio.</h2>
+          <div class="sobre__body">
+            <p>Trabalho na fronteira entre engenharia de software e direção criativa: sites que parecem produto de agência premium e agentes de IA que realmente reduzem custo operacional — não apenas prometem.</p>
+            <div class="sobre__stack">
+              <span>TypeScript</span>
+              <span>Three.js / WebGL</span>
+              <span>Agentes de IA / LLMs</span>
+              <span>Automação</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <section id="contato" class="section section--dark contato">
+        <p class="eyebrow">VAMOS CONVERSAR</p>
+        <h2 class="section__title section__title--big">Vamos automatizar<br />e modernizar sua empresa?</h2>
+        <p class="section__lede">Conte um pouco sobre o seu negócio e eu te mostro, na prática, quanto tempo e dinheiro dá pra economizar.</p>
+        <a class="btn btn--primary btn--large" data-whatsapp href="#" target="_blank" rel="noopener">Falar no WhatsApp agora</a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__top">
+        <a href="#inicio" class="nav__mark">LUCIANA<span>.</span>DEV</a>
+        <nav aria-label="Navegação do rodapé">
+          <a href="#servicos">Serviços</a>
+          <a href="#economia">Economia</a>
+          <a href="#casos">Casos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="footer__social">
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 lucianadev.com.br</span>
+        <span>Sites institucionais &amp; agentes de IA</span>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
