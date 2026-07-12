@@ -8,7 +8,7 @@ import Lenis from "lenis"
 import { initSphereScene } from "./scene/sphere"
 import { initCursor } from "./components/cursor"
 import { initNav, initWhatsappLinks } from "./components/nav"
-import { initCounters, bindDegreeIndicator } from "./components/hud-counter"
+import { initCounters } from "./components/hud-counter"
 import { initEconomiaSection } from "./components/calculator"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -38,8 +38,6 @@ const sphere = canvas ? initSphereScene(canvas) : null
 if (!sphere) {
   document.body.classList.add("no-webgl")
 } else if (canvas) {
-  bindDegreeIndicator(() => sphere.getRotationDegrees())
-
   window.addEventListener("mousemove", (event) => {
     const x = (event.clientX / window.innerWidth) * 2 - 1
     const y = -(event.clientY / window.innerHeight) * 2 + 1

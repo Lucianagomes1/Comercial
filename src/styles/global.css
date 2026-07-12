@@ -12,11 +12,15 @@
   --line-dark: rgba(245, 244, 240, 0.14);
   --line-light: rgba(12, 12, 11, 0.14);
 
-  --accent-1: #8ecbff;
-  --accent-2: #c9a8ff;
-  --accent-3: #ff9ed2;
-  --accent-4: #ffe08a;
-  --accent-gradient: linear-gradient(115deg, var(--accent-1), var(--accent-2) 35%, var(--accent-3) 65%, var(--accent-4));
+  --accent-1: #7c5cfa;
+  --accent-2: #c14fd6;
+  --accent-3: #e0409e;
+  --accent-4: #f5a623;
+  --accent-gradient: linear-gradient(115deg, var(--accent-1), var(--accent-2) 40%, var(--accent-3) 65%, var(--accent-4));
+
+  --brand-purple: #7c5cfa;
+  --brand-magenta: #e0409e;
+  --brand-orange: #f5a623;
 
   --font-sans: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
   --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -225,8 +229,6 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  border-radius: 50%;
-  background: var(--text-white);
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }
@@ -234,19 +236,20 @@ button {
 .cursor__dot {
   width: 6px;
   height: 6px;
+  border-radius: 50%;
+  background: var(--text-white);
 }
 
 .cursor__ring {
   width: 34px;
   height: 34px;
-  background: transparent;
-  border: 1px solid var(--text-white);
+  overflow: visible;
   transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
 }
 
 .cursor__ring.is-active {
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -302,13 +305,56 @@ button {
   mix-blend-mode: difference;
 }
 
-.nav__mark {
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  /* opt out of .nav's mix-blend-mode: difference so the brand colors render true,
+     not inverted, against both dark and light section backgrounds */
+  mix-blend-mode: normal;
+  isolation: isolate;
 }
-.nav__mark span {
-  color: var(--accent-3);
+
+.brand__icon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.brand__word {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand--footer {
+  gap: 0.85rem;
+}
+.brand--footer .brand__icon {
+  width: 46px;
+  height: 46px;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.brand--footer .brand__word {
+  font-size: 1.6rem;
+}
+
+.brand__tagline {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-white-dim);
 }
 
 .nav__links {

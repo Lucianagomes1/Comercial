@@ -60,24 +60,10 @@
   color: var(--text-white-dim);
 }
 
-.hero__hud--deg {
-  top: 7.5rem;
-  left: clamp(1.25rem, 4vw, 3rem);
-  align-items: flex-start;
-}
-
 .hero__hud--eq {
   top: 7.5rem;
   right: clamp(1.25rem, 4vw, 3rem);
   align-items: flex-end;
-}
-
-.hero__hud-value {
-  font-family: var(--font-sans);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--text-white);
-  letter-spacing: 0;
 }
 
 .eq {
@@ -209,10 +195,8 @@
 
 /* ===================== ECONOMIA ===================== */
 
-.economia .section__title,
-.economia .section__lede {
-  margin-left: 0;
-  margin-right: auto;
+.economia__title {
+  text-align: center;
 }
 
 .econ-grid {

@@ -1,12 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
   <defs>
-    <radialGradient id="g" cx="35%" cy="30%" r="75%">
-      <stop offset="0%" stop-color="#ffe08a" />
-      <stop offset="35%" stop-color="#ff9ed2" />
-      <stop offset="65%" stop-color="#c9a8ff" />
-      <stop offset="100%" stop-color="#8ecbff" />
+    <linearGradient id="favLinePink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c5cfa" />
+      <stop offset="100%" stop-color="#e0409e" />
+    </linearGradient>
+    <linearGradient id="favLineOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0409e" />
+      <stop offset="100%" stop-color="#f5a623" />
+    </linearGradient>
+    <radialGradient id="favOrb" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffcb6b" />
+      <stop offset="100%" stop-color="#e8720b" />
     </radialGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#050505" />
-  <circle cx="32" cy="32" r="18" fill="url(#g)" />
+  <rect width="100" height="100" rx="20" fill="#050505" />
+  <line x1="38" y1="27" x2="60" y2="22" stroke="url(#favLinePink)" stroke-width="4" stroke-linecap="round" />
+  <line x1="38" y1="27" x2="24" y2="47" stroke="url(#favLinePink)" stroke-width="4.4" stroke-linecap="round" />
+  <line x1="24" y1="47" x2="27" y2="67" stroke="url(#favLineOrange)" stroke-width="3.8" stroke-linecap="round" />
+  <line x1="27" y1="67" x2="45" y2="79" stroke="url(#favLineOrange)" stroke-width="3.8" stroke-linecap="round" />
+  <line x1="45" y1="79" x2="68" y2="77" stroke="url(#favLineOrange)" stroke-width="4" stroke-linecap="round" />
+  <circle cx="60" cy="22" r="9" fill="url(#favOrb)" />
+  <circle cx="68" cy="77" r="8.6" fill="url(#favOrb)" />
+  <circle cx="38" cy="27" r="4.6" fill="#7c5cfa" />
+  <circle cx="24" cy="47" r="5.6" fill="#7c5cfa" />
+  <circle cx="27" cy="67" r="4.2" fill="#e0409e" />
+  <circle cx="45" cy="79" r="5" fill="#e0409e" />
 </svg>

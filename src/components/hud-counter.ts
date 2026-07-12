@@ -34,15 +34,3 @@ export function initCounters(): void {
 
   targets.forEach((el) => observer.observe(el))
 }
-
-export function bindDegreeIndicator(getDegrees: () => number): void {
-  const el = document.querySelector<HTMLElement>("[data-deg-value]")
-  if (!el) return
-
-  function update() {
-    const deg = ((getDegrees() % 360) + 360) % 360
-    el!.textContent = `${String(Math.round(deg)).padStart(3, "0")}°`
-    requestAnimationFrame(update)
-  }
-  requestAnimationFrame(update)
-}

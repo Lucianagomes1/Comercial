@@ -8,7 +8,6 @@ export interface SphereScene {
   group: THREE.Group
   setPointer(x: number, y: number): void
   setMorph(strength: number): void
-  getRotationDegrees(): number
   destroy(): void
 }
 
@@ -109,10 +108,10 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     uMouse: { value: new THREE.Vector2(0, 0) },
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
     uSize: { value: 1.0 },
-    uColorA: { value: new THREE.Color("#8ecbff") },
-    uColorB: { value: new THREE.Color("#c9a8ff") },
-    uColorC: { value: new THREE.Color("#ff9ed2") },
-    uColorD: { value: new THREE.Color("#ffe08a") },
+    uColorA: { value: new THREE.Color("#7c5cfa") },
+    uColorB: { value: new THREE.Color("#c14fd6") },
+    uColorC: { value: new THREE.Color("#e0409e") },
+    uColorD: { value: new THREE.Color("#f5a623") },
   }
 
   const pointsGeometry = new THREE.BufferGeometry()
@@ -194,9 +193,6 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     },
     setMorph(strength: number) {
       targetMorph = strength
-    },
-    getRotationDegrees() {
-      return THREE.MathUtils.radToDeg(network.rotation.y)
     },
     destroy() {
       cancelAnimationFrame(frameId)

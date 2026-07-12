@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#050505" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LUCIANA.DEV — Sites Institucionais & Agentes de IA" />
+    <meta property="og:title" content="Constela — Sites Institucionais & Agentes de IA" />
     <meta property="og:description" content="Design autoral em WebGL e agentes de IA que atendem, qualificam e vendem 24/7 — por uma fração do custo de um funcionário." />
     <meta property="og:locale" content="pt_BR" />
 
@@ -16,12 +16,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300..400&display=swap" rel="stylesheet" />
 
-    <title>LUCIANA.DEV — Sites Institucionais & Agentes de IA</title>
+    <title>Constela — Sites Institucionais & Agentes de IA</title>
   </head>
   <body>
     <div class="cursor" aria-hidden="true">
       <span class="cursor__dot"></span>
-      <span class="cursor__ring"></span>
+      <svg class="cursor__ring" viewBox="0 0 100 100">
+        <line x1="36" y1="25" x2="58" y2="21" stroke="var(--text-white)" stroke-width="2.6" stroke-linecap="round" />
+        <line x1="36" y1="25" x2="21" y2="44" stroke="var(--text-white)" stroke-width="2.8" stroke-linecap="round" />
+        <line x1="21" y1="44" x2="24" y2="65" stroke="var(--text-white)" stroke-width="2.4" stroke-linecap="round" />
+        <line x1="24" y1="65" x2="42" y2="78" stroke="var(--text-white)" stroke-width="2.4" stroke-linecap="round" />
+        <line x1="42" y1="78" x2="66" y2="76" stroke="var(--text-white)" stroke-width="2.6" stroke-linecap="round" />
+        <circle cx="58" cy="21" r="6.6" fill="var(--text-white)" />
+        <circle cx="66" cy="76" r="6.2" fill="var(--text-white)" />
+        <circle cx="36" cy="25" r="3.2" fill="var(--text-white)" />
+        <circle cx="21" cy="44" r="4" fill="var(--text-white)" />
+        <circle cx="24" cy="65" r="3" fill="var(--text-white)" />
+        <circle cx="42" cy="78" r="3.6" fill="var(--text-white)" />
+      </svg>
     </div>
 
     <div class="noise-overlay" aria-hidden="true"></div>
@@ -29,7 +41,42 @@
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
     <header class="nav" data-nav>
-      <a href="#inicio" class="nav__mark">LUCIANA<span>.</span>DEV</a>
+      <a href="#inicio" class="brand" aria-label="Constela — página inicial">
+        <svg class="brand__icon" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="brandLinePink-nav" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#7c5cfa" />
+              <stop offset="100%" stop-color="#e0409e" />
+            </linearGradient>
+            <linearGradient id="brandLineOrange-nav" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e0409e" />
+              <stop offset="100%" stop-color="#f5a623" />
+            </linearGradient>
+            <radialGradient id="brandOrb-nav" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#ffcb6b" />
+              <stop offset="100%" stop-color="#e8720b" />
+            </radialGradient>
+          </defs>
+          <line x1="36" y1="25" x2="58" y2="21" stroke="url(#brandLinePink-nav)" stroke-width="2.4" stroke-linecap="round" />
+          <line x1="36" y1="25" x2="21" y2="44" stroke="url(#brandLinePink-nav)" stroke-width="2.6" stroke-linecap="round" />
+          <line x1="21" y1="44" x2="24" y2="65" stroke="url(#brandLineOrange-nav)" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="24" y1="65" x2="42" y2="78" stroke="url(#brandLineOrange-nav)" stroke-width="2.2" stroke-linecap="round" />
+          <line x1="42" y1="78" x2="66" y2="76" stroke="url(#brandLineOrange-nav)" stroke-width="2.4" stroke-linecap="round" />
+          <rect x="40" y="45" width="44" height="13" rx="6.5" fill="none" stroke="#e0409e" stroke-width="1.4" />
+          <text x="62" y="54.2" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="5.5" letter-spacing="2" fill="#7c5cfa">TECH</text>
+          <circle cx="17" cy="29" r="1.1" fill="#f5a623" />
+          <circle cx="76" cy="30" r="1.1" fill="#f5a623" />
+          <circle cx="80" cy="64" r="0.9" fill="#e0409e" />
+          <circle cx="23" cy="82" r="1" fill="#7c5cfa" />
+          <circle cx="58" cy="21" r="6.2" fill="url(#brandOrb-nav)" />
+          <circle cx="66" cy="76" r="6" fill="url(#brandOrb-nav)" />
+          <circle cx="36" cy="25" r="3" fill="#7c5cfa" />
+          <circle cx="21" cy="44" r="3.8" fill="#7c5cfa" />
+          <circle cx="24" cy="65" r="2.8" fill="#e0409e" />
+          <circle cx="42" cy="78" r="3.4" fill="#e0409e" />
+        </svg>
+        <span class="brand__word">constela</span>
+      </a>
       <nav class="nav__links" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="#servicos">Serviços</a>
@@ -57,11 +104,6 @@
     <main id="main">
       <!-- HERO -->
       <section id="inicio" class="section section--dark hero">
-        <div class="hero__hud hero__hud--deg" data-hud-deg aria-hidden="true">
-          <span class="hero__hud-value" data-deg-value>000°</span>
-          <span class="hero__hud-label">ORIENTAÇÃO</span>
-        </div>
-
         <div class="hero__hud hero__hud--eq" aria-hidden="true">
           <div class="eq" data-eq>
             <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -116,7 +158,7 @@
       <!-- ECONOMIA -->
       <section id="economia" class="section section--dark economia">
         <p class="eyebrow">ECONOMIA REAL</p>
-        <h2 class="section__title">Quanto sua empresa deixa na mesa<br />com trabalho manual?</h2>
+        <h2 class="section__title economia__title">Quanto sua empresa deixa na mesa com trabalho manual ?</h2>
         <p class="section__lede">Comparamos o custo real de um funcionário — salário, encargos e horas efetivas — com o custo de um agente de IA operando as mesmas horas. Os números abaixo usam a mesma metodologia que aplicamos com clientes.</p>
 
         <div class="econ-grid">
@@ -315,7 +357,45 @@
 
     <footer class="footer">
       <div class="footer__top">
-        <a href="#inicio" class="nav__mark">LUCIANA<span>.</span>DEV</a>
+        <a href="#inicio" class="brand brand--footer" aria-label="Constela — página inicial">
+          <svg class="brand__icon" viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <linearGradient id="brandLinePink-footer" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#7c5cfa" />
+                <stop offset="100%" stop-color="#e0409e" />
+              </linearGradient>
+              <linearGradient id="brandLineOrange-footer" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e0409e" />
+                <stop offset="100%" stop-color="#f5a623" />
+              </linearGradient>
+              <radialGradient id="brandOrb-footer" cx="35%" cy="30%" r="75%">
+                <stop offset="0%" stop-color="#ffcb6b" />
+                <stop offset="100%" stop-color="#e8720b" />
+              </radialGradient>
+            </defs>
+            <line x1="36" y1="25" x2="58" y2="21" stroke="url(#brandLinePink-footer)" stroke-width="2.4" stroke-linecap="round" />
+            <line x1="36" y1="25" x2="21" y2="44" stroke="url(#brandLinePink-footer)" stroke-width="2.6" stroke-linecap="round" />
+            <line x1="21" y1="44" x2="24" y2="65" stroke="url(#brandLineOrange-footer)" stroke-width="2.2" stroke-linecap="round" />
+            <line x1="24" y1="65" x2="42" y2="78" stroke="url(#brandLineOrange-footer)" stroke-width="2.2" stroke-linecap="round" />
+            <line x1="42" y1="78" x2="66" y2="76" stroke="url(#brandLineOrange-footer)" stroke-width="2.4" stroke-linecap="round" />
+            <rect x="40" y="45" width="44" height="13" rx="6.5" fill="none" stroke="#e0409e" stroke-width="1.4" />
+            <text x="62" y="54.2" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="5.5" letter-spacing="2" fill="#7c5cfa">TECH</text>
+            <circle cx="17" cy="29" r="1.1" fill="#f5a623" />
+            <circle cx="76" cy="30" r="1.1" fill="#f5a623" />
+            <circle cx="80" cy="64" r="0.9" fill="#e0409e" />
+            <circle cx="23" cy="82" r="1" fill="#7c5cfa" />
+            <circle cx="58" cy="21" r="6.2" fill="url(#brandOrb-footer)" />
+            <circle cx="66" cy="76" r="6" fill="url(#brandOrb-footer)" />
+            <circle cx="36" cy="25" r="3" fill="#7c5cfa" />
+            <circle cx="21" cy="44" r="3.8" fill="#7c5cfa" />
+            <circle cx="24" cy="65" r="2.8" fill="#e0409e" />
+            <circle cx="42" cy="78" r="3.4" fill="#e0409e" />
+          </svg>
+          <span class="brand__text">
+            <span class="brand__word">constela</span>
+            <span class="brand__tagline">Sites &amp; Agentes de IA</span>
+          </span>
+        </a>
         <nav aria-label="Navegação do rodapé">
           <a href="#servicos">Serviços</a>
           <a href="#economia">Economia</a>
@@ -329,7 +409,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <span>© 2026 lucianadev.com.br</span>
+        <span>© 2026 Constela</span>
         <span>Sites institucionais &amp; agentes de IA</span>
       </div>
     </footer>
