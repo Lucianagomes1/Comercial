@@ -45,7 +45,7 @@ if (!sphere) {
   })
 
   // Esfera acompanha o scroll: deforma mais ao sair do hero, encolhe e
-  // se reposiciona no manifesto/economia, some nas seções de conteúdo puro
+  // se reposiciona no destaque/economia, some nas seções de conteúdo puro
   // e reaparece como fechamento no CTA final.
   ScrollTrigger.create({
     trigger: "#inicio",
@@ -60,7 +60,7 @@ if (!sphere) {
     y: 0.7,
     z: 0.7,
     scrollTrigger: {
-      trigger: ".manifesto",
+      trigger: ".quote",
       start: "top bottom",
       end: "bottom top",
       scrub: true,

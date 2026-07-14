@@ -200,169 +200,49 @@
   max-width: 34ch;
 }
 
-/* ===================== MANIFESTO ===================== */
+/* ===================== DESTAQUE ===================== */
 
-.manifesto {
-  position: relative;
+.quote {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
   text-align: center;
-  padding-top: clamp(5rem, 10vw, 9rem);
-  padding-bottom: clamp(5rem, 10vw, 9rem);
-  overflow: hidden;
 }
 
-.manifesto::before,
-.manifesto::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.28;
-  pointer-events: none;
-}
-
-.manifesto::before {
-  top: -10%;
-  left: -8%;
-  width: 26rem;
-  height: 26rem;
-  background: radial-gradient(circle, var(--brand-purple), transparent 70%);
-}
-
-.manifesto::after {
-  bottom: -14%;
-  right: -6%;
-  width: 24rem;
-  height: 24rem;
-  background: radial-gradient(circle, var(--brand-orange), transparent 70%);
-}
-
-.manifesto > * {
-  position: relative;
-  z-index: 1;
-}
-
-.manifesto__quote {
+.quote__text {
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(1.7rem, 4vw, 2.9rem);
-  line-height: 1.28;
-  max-width: 20ch;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  line-height: 1.32;
+  max-width: 22ch;
   margin: 0 auto;
 }
 
-.manifesto__quote em {
+.quote__text em {
   font-style: italic;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-
-.manifesto__grid {
-  max-width: 68rem;
-  margin: 3rem auto 0;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 2.5rem;
-  align-items: stretch;
-  text-align: left;
-}
-
-.manifesto__body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.1rem;
-  font-size: 1.02rem;
-  line-height: 1.7;
-  color: var(--text-black-dim);
-}
-
-.manifesto__body strong {
-  color: var(--text-black);
-}
-
-.manifesto__stat {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 2rem;
-  border-radius: 20px;
-  background: linear-gradient(155deg, rgba(124, 92, 250, 0.14), rgba(224, 64, 158, 0.12) 55%, rgba(245, 166, 35, 0.14));
-  border: 1px solid rgba(124, 92, 250, 0.25);
-}
-
-.manifesto__stat-value {
-  font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 5vw, 3.6rem);
-  font-weight: 600;
-  line-height: 1;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.manifesto__stat-label {
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: var(--text-black-dim);
-}
-
-@media (max-width: 720px) {
-  .manifesto__grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ===================== ECONOMIA ===================== */
 
-.economia__title {
+.economia__title,
+.economia__lede {
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.econ-notice {
-  margin-top: 1.75rem;
-  max-width: 56ch;
+.econ-single {
+  max-width: 40rem;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
+}
+
+.econ-cta {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1rem 1.25rem;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(124, 92, 250, 0.12), rgba(245, 166, 35, 0.1));
-  border: 1px solid rgba(124, 92, 250, 0.3);
-}
-
-.econ-notice__icon {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 50%;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--accent-gradient);
-  color: var(--bg-black);
-}
-
-.econ-notice p {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--text-white-dim);
-}
-
-.econ-grid {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem;
-  align-items: stretch;
+  width: fit-content;
+  margin: 2rem auto 0;
 }
 
 .panel {
@@ -381,54 +261,6 @@
   letter-spacing: 0.16em;
   color: var(--accent-1);
   margin-bottom: 0.6rem;
-}
-
-.panel__header h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.econ-table {
-  width: 100%;
-  margin-top: 1.75rem;
-  border-collapse: collapse;
-  font-size: 0.88rem;
-}
-
-.econ-table th {
-  text-align: left;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-white-dim);
-  padding-bottom: 0.75rem;
-  font-weight: 500;
-}
-
-.econ-table td {
-  padding: 0.65rem 0;
-  border-top: 1px solid var(--line-dark);
-  font-variant-numeric: tabular-nums;
-}
-
-.econ-table td:not(:first-child) {
-  text-align: right;
-}
-
-.econ-table__highlight td {
-  font-weight: 600;
-  color: var(--text-white);
-}
-
-.panel__result {
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: var(--text-white-dim);
-}
-
-.panel__result strong {
-  color: var(--accent-1);
-  font-size: 1.1rem;
 }
 
 .calc-form {
@@ -650,6 +482,12 @@
 }
 .service-card--accent li::before {
   background: var(--accent-2);
+}
+
+.servicos__cta {
+  display: flex;
+  width: fit-content;
+  margin: clamp(2.5rem, 5vw, 4rem) auto 0;
 }
 
 /* ===================== PROCESSO ===================== */
@@ -986,10 +824,6 @@
 /* ===================== Responsive ===================== */
 
 @media (max-width: 1100px) {
-  .beneficios-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .service-card {
     flex-basis: calc((100% - 1.75rem) / 2);
     max-width: calc((100% - 1.75rem) / 2);
@@ -997,7 +831,6 @@
 }
 
 @media (max-width: 900px) {
-  .econ-grid,
   .sobre-grid,
   .beneficios-grid {
     grid-template-columns: 1fr;

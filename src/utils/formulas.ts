@@ -57,17 +57,6 @@ export function calcularComparativo(input: ComparativoInput): ComparativoResulta
   }
 }
 
-export const EXEMPLO_PADRAO: ComparativoInput = {
-  qtdeFuncionarios: 2,
-  salarioMedio: 1500,
-  impostosPct: 48,
-  horasFuncionario: 220,
-  qtdeAgentes: 1,
-  custoPorAgente: 600,
-  taxaServicoPct: 0,
-  horasAgente: 730,
-}
-
 export function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", {
     style: "currency",
@@ -78,8 +67,4 @@ export function formatBRL(value: number): string {
 
 export function formatPct(value: number): string {
   return `${(value * 100).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}%`
-}
-
-export function formatHoras(value: number): string {
-  return `${value.toLocaleString("pt-BR", { maximumFractionDigits: 0 })}h`
 }

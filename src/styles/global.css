@@ -214,6 +214,16 @@ button {
   background: var(--accent-1);
 }
 
+.btn--dark {
+  background: var(--text-black);
+  color: var(--text-white);
+}
+.btn--dark:hover {
+  transform: translateY(-2px);
+  background: var(--accent-1);
+  color: var(--text-white);
+}
+
 .btn--ghost {
   border: 1px solid var(--line-dark);
   color: var(--text-white);
@@ -227,6 +237,35 @@ button {
   margin-top: 2.5rem;
   padding: 1.15rem 2.6rem;
   font-size: 1.05rem;
+}
+
+/* ---------- Floating WhatsApp button ---------- */
+
+.whatsapp-float {
+  position: fixed;
+  right: clamp(1.1rem, 3vw, 1.75rem);
+  bottom: clamp(1.1rem, 3vw, 1.75rem);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: var(--text-white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-float svg {
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 /* ---------- Custom cursor ---------- */
