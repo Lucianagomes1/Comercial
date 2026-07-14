@@ -195,6 +195,14 @@ button {
   border-radius: 999px;
   transition: transform 0.35s var(--ease-out), background 0.35s var(--ease-out), color 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
   white-space: nowrap;
+  max-width: 100%;
+}
+
+@media (max-width: 480px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 .btn--primary {
@@ -323,15 +331,15 @@ button {
 }
 
 .brand__icon {
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   flex-shrink: 0;
 }
 
 .brand__word {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   letter-spacing: 0.01em;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -343,8 +351,8 @@ button {
   gap: 0.85rem;
 }
 .brand--footer .brand__icon {
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
 }
 
 .brand__text {
@@ -353,7 +361,7 @@ button {
   gap: 0.3rem;
 }
 .brand--footer .brand__word {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 .brand__tagline {

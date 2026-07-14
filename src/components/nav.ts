@@ -18,9 +18,9 @@ export function initNav(): void {
   })
 }
 
-export function initWhatsappLinks(phoneNumber: string, message: string): void {
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+export function initWhatsappLinks(phoneNumber: string, defaultMessage: string): void {
   document.querySelectorAll<HTMLAnchorElement>("[data-whatsapp]").forEach((link) => {
-    link.href = url
+    const message = link.dataset.whatsappMessage ?? defaultMessage
+    link.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
   })
 }
