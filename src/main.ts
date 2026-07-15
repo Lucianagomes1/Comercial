@@ -13,8 +13,7 @@ import { initEconomiaSection } from "./components/calculator"
 
 gsap.registerPlugin(ScrollTrigger)
 
-// TODO: substituir pelo número real de WhatsApp da Luciana (formato internacional, só dígitos)
-const WHATSAPP_NUMBER = "5511999999999"
+const WHATSAPP_NUMBER = "5511983202462"
 const WHATSAPP_MESSAGE = "Olá! Vim pelo site e quero saber mais sobre sites institucionais e agentes de IA."
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
