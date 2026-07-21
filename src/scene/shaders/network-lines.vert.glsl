@@ -1,9 +1,14 @@
 uniform float uTime;
 uniform float uMorph;
 uniform vec2 uMouse;
+uniform float uAssembly;
+
+attribute vec3 aScatter;
+attribute float aDelay;
 
 varying float vNoise;
 varying vec3 vNormal;
+varying float vReveal;
 
 // Ashima Arts / Stefan Gustavson simplex noise
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -79,10 +84,18 @@ void main() {
   float mouseInfluence = (uMouse.x * n.x + uMouse.y * n.y) * 0.12;
 
   float displacement = snoise(noiseCoord) * (0.045 + uMorph * 0.11) + mouseInfluence * 0.05;
-  vec3 pos = position + n * displacement;
+
+  // Cada vértice da linha herda o scatter/delay do nó correspondente,
+  // então as conexões acompanham os pontos durante a montagem e só
+  // ganham opacidade quando os dois extremos já assentaram.
+  float t = clamp((uAssembly - aDelay * 0.55) / 0.45, 0.0, 1.0);
+  float reveal = 1.0 - pow(1.0 - t, 3.0);
+
+  vec3 pos = mix(position + aScatter, position, reveal) + n * displacement * reveal;
 
   vNoise = displacement;
   vNormal = n;
+  vReveal = smoothstep(0.75, 1.0, reveal);
 
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
 }

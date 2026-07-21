@@ -10,6 +10,9 @@ import { initCursor } from "./components/cursor"
 import { initNav, initWhatsappLinks } from "./components/nav"
 import { initCounters } from "./components/hud-counter"
 import { initEconomiaSection } from "./components/calculator"
+import { initCarousels } from "./components/carousel"
+import { initShowcase } from "./components/showcase"
+import { initReveals } from "./components/reveal"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,6 +25,9 @@ initNav()
 initCursor()
 initCounters()
 initEconomiaSection()
+initCarousels()
+initShowcase()
+initReveals()
 initWhatsappLinks(WHATSAPP_NUMBER, WHATSAPP_MESSAGE)
 
 if (!reducedMotion) {

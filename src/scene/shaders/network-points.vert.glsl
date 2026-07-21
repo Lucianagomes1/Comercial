@@ -3,9 +3,15 @@ uniform float uMorph;
 uniform vec2 uMouse;
 uniform float uPixelRatio;
 uniform float uSize;
+uniform float uAssembly;
+
+attribute vec3 aScatter;
+attribute float aDelay;
 
 varying float vNoise;
 varying vec3 vNormal;
+varying float vReveal;
+varying float vFade;
 
 // Ashima Arts / Stefan Gustavson simplex noise
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -81,14 +87,24 @@ void main() {
   float mouseInfluence = (uMouse.x * n.x + uMouse.y * n.y) * 0.12;
 
   float displacement = snoise(noiseCoord) * (0.045 + uMorph * 0.11) + mouseInfluence * 0.05;
-  vec3 pos = position + n * displacement;
+
+  // Montagem: cada ponto parte disperso no espaço e converge para a esfera
+  // com um atraso individual, criando a varredura que "constrói" o globo.
+  float t = clamp((uAssembly - aDelay * 0.55) / 0.45, 0.0, 1.0);
+  float reveal = 1.0 - pow(1.0 - t, 3.0);
+
+  vec3 pos = mix(position + aScatter, position, reveal) + n * displacement * reveal;
 
   vNoise = displacement;
   vNormal = n;
+  vReveal = reveal;
+  // O ponto acende logo no começo do próprio voo, deixando a trajetória
+  // de montagem visível em vez de aparecer só ao assentar na esfera
+  vFade = smoothstep(0.0, 0.15, t);
 
   vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
   gl_Position = projectionMatrix * mvPosition;
 
   float sizeAttenuation = uSize * uPixelRatio * (300.0 / -mvPosition.z);
-  gl_PointSize = clamp(sizeAttenuation, 1.5, 7.0);
+  gl_PointSize = clamp(sizeAttenuation, 1.5, 7.0) * (0.55 + 0.45 * reveal);
 }

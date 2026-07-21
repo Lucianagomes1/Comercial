@@ -38,10 +38,50 @@ function buildSpherePositions(count: number, radius: number): Float32Array {
   return positions
 }
 
-// Conecta cada nó aos seus vizinhos mais próximos, formando a malha da rede
-function buildConnections(positions: Float32Array, count: number, neighbors: number, maxDist: number): Float32Array {
+// Dispersão inicial de cada nó (direção aleatória, longe da esfera) e o
+// atraso individual que cria a varredura da montagem seguindo a espiral
+function buildAssemblyAttributes(count: number): { scatter: Float32Array; delay: Float32Array } {
+  const scatter = new Float32Array(count * 3)
+  const delay = new Float32Array(count)
+
+  for (let i = 0; i < count; i++) {
+    const dir = new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
+    if (dir.lengthSq() < 0.0001) dir.set(0, 1, 0)
+    // Bem além das bordas da viewport, achatando o eixo z para o voo
+    // acontecer no plano da tela, onde é visível
+    dir.normalize().multiplyScalar(5.5 + Math.random() * 6)
+    dir.z *= 0.45
+
+    scatter[i * 3] = dir.x
+    scatter[i * 3 + 1] = dir.y
+    scatter[i * 3 + 2] = dir.z
+    delay[i] = i / (count - 1)
+  }
+
+  return { scatter, delay }
+}
+
+// Conecta cada nó aos seus vizinhos mais próximos, formando a malha da rede.
+// Cada vértice de linha herda o scatter/delay do nó que representa, para a
+// malha acompanhar os pontos durante a montagem.
+function buildConnections(
+  positions: Float32Array,
+  count: number,
+  neighbors: number,
+  maxDist: number,
+  scatter: Float32Array,
+  delay: Float32Array
+): { positions: Float32Array; scatter: Float32Array; delay: Float32Array } {
   const edges = new Set<string>()
   const linePositions: number[] = []
+  const lineScatter: number[] = []
+  const lineDelay: number[] = []
+
+  const pushVertex = (index: number) => {
+    linePositions.push(positions[index * 3], positions[index * 3 + 1], positions[index * 3 + 2])
+    lineScatter.push(scatter[index * 3], scatter[index * 3 + 1], scatter[index * 3 + 2])
+    lineDelay.push(delay[index])
+  }
 
   for (let i = 0; i < count; i++) {
     const ax = positions[i * 3]
@@ -64,11 +104,16 @@ function buildConnections(positions: Float32Array, count: number, neighbors: num
       const key = i < j ? `${i}-${j}` : `${j}-${i}`
       if (edges.has(key)) continue
       edges.add(key)
-      linePositions.push(ax, ay, az, positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2])
+      pushVertex(i)
+      pushVertex(j)
     }
   }
 
-  return new Float32Array(linePositions)
+  return {
+    positions: new Float32Array(linePositions),
+    scatter: new Float32Array(lineScatter),
+    delay: new Float32Array(lineDelay),
+  }
 }
 
 export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
@@ -99,11 +144,13 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
   const NODE_COUNT = 140
   const RADIUS = 0.95
   const nodePositions = buildSpherePositions(NODE_COUNT, RADIUS)
-  const linePositions = buildConnections(nodePositions, NODE_COUNT, 3, RADIUS * 0.5)
+  const assembly = buildAssemblyAttributes(NODE_COUNT)
+  const lineData = buildConnections(nodePositions, NODE_COUNT, 3, RADIUS * 0.5, assembly.scatter, assembly.delay)
 
   const uniforms = {
     uTime: { value: 0 },
     uScroll: { value: 0 },
+    uAssembly: { value: reducedMotion ? 1 : 0 },
     uMorph: { value: 0.15 },
     uMouse: { value: new THREE.Vector2(0, 0) },
     uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
@@ -116,6 +163,8 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
 
   const pointsGeometry = new THREE.BufferGeometry()
   pointsGeometry.setAttribute("position", new THREE.BufferAttribute(nodePositions, 3))
+  pointsGeometry.setAttribute("aScatter", new THREE.BufferAttribute(assembly.scatter, 3))
+  pointsGeometry.setAttribute("aDelay", new THREE.BufferAttribute(assembly.delay, 1))
 
   const pointsMaterial = new THREE.ShaderMaterial({
     vertexShader: pointsVertexShader,
@@ -130,7 +179,9 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
   network.add(points)
 
   const linesGeometry = new THREE.BufferGeometry()
-  linesGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3))
+  linesGeometry.setAttribute("position", new THREE.BufferAttribute(lineData.positions, 3))
+  linesGeometry.setAttribute("aScatter", new THREE.BufferAttribute(lineData.scatter, 3))
+  linesGeometry.setAttribute("aDelay", new THREE.BufferAttribute(lineData.delay, 1))
 
   const linesMaterial = new THREE.ShaderMaterial({
     vertexShader: linesVertexShader,
@@ -163,6 +214,9 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     uniforms.uPixelRatio.value = Math.min(window.devicePixelRatio, 2)
   }
 
+  const ASSEMBLY_DELAY = 0.35
+  const ASSEMBLY_DURATION = 4.6
+
   function tick() {
     const elapsed = clock.getElapsedTime()
 
@@ -175,6 +229,17 @@ export function initSphereScene(canvas: HTMLCanvasElement): SphereScene | null {
     uniforms.uMorph.value = currentMorph
 
     if (!reducedMotion) {
+      // Progresso da montagem: os shaders aplicam o easing por ponto,
+      // aqui só avança o relógio global da animação de entrada.
+      const raw = Math.min(Math.max((elapsed - ASSEMBLY_DELAY) / ASSEMBLY_DURATION, 0), 1)
+      uniforms.uAssembly.value = raw
+
+      // Durante a montagem o globo gira mais rápido e a câmera aproxima,
+      // assentando no movimento contínuo padrão quando raw chega em 1.
+      const settle = 1 - Math.pow(1 - raw, 3)
+      group.rotation.y = -1.4 * (1 - settle)
+      camera.position.z = 8.9 - 1.3 * settle
+
       network.rotation.y += 0.0018
       network.rotation.x += 0.0006
     }

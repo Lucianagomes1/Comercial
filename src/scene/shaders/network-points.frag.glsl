@@ -6,6 +6,8 @@ uniform vec3 uColorD;
 
 varying float vNoise;
 varying vec3 vNormal;
+varying float vReveal;
+varying float vFade;
 
 void main() {
   vec2 coord = gl_PointCoord - 0.5;
@@ -22,5 +24,5 @@ void main() {
   color = mix(color, uColorC, mixer2 * 0.6);
   color = mix(color, uColorD, glow * 0.35);
 
-  gl_FragColor = vec4(color, glow);
+  gl_FragColor = vec4(color, glow * vFade);
 }

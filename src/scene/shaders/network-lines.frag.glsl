@@ -6,6 +6,7 @@ uniform vec3 uColorD;
 
 varying float vNoise;
 varying vec3 vNormal;
+varying float vReveal;
 
 void main() {
   float angle = atan(vNormal.y, vNormal.x) + uTime * 0.05;
@@ -14,5 +15,5 @@ void main() {
   vec3 color = mix(uColorA, uColorB, mixer);
   color = mix(color, uColorC, 0.25);
 
-  gl_FragColor = vec4(color, 0.22);
+  gl_FragColor = vec4(color, 0.22 * vReveal);
 }
