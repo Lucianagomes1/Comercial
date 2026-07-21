@@ -53,12 +53,16 @@ export function initReveals() {
     document.querySelectorAll<HTMLElement>(containerSel).forEach((container) => {
       const items = container.querySelectorAll(itemSel)
       if (!items.length) return
-      gsap.from(items, {
-        y: 56,
-        opacity: 0,
+      // fromTo com destino explícito: o from() sozinho pode recapturar o
+      // destino errado após ScrollTrigger.refresh(), congelando o y em 56px.
+      // clearProps devolve o hover por CSS ao fim da animação.
+      gsap.fromTo(items, { y: 56, opacity: 0 }, {
+        y: 0,
+        opacity: 1,
         duration: 1.05,
         ease: easeOut,
         stagger: 0.12,
+        clearProps: "transform,opacity",
         scrollTrigger: { trigger: container, start: "top 80%" },
       })
     })

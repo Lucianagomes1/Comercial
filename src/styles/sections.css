@@ -473,8 +473,8 @@
 
 .service-card {
   flex: 0 0 min(21.5rem, 82vw);
-  background: var(--bg-offwhite-soft);
-  border: 1px solid var(--line-light);
+  background: linear-gradient(150deg, #ddd1fc, #c7b3f9);
+  border: 1px solid rgba(124, 92, 250, 0.4);
   border-radius: 20px;
   padding: clamp(1.5rem, 2.5vw, 2.25rem);
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
@@ -547,7 +547,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--text-black);
+  background: var(--brand-purple);
 }
 
 .service-card--boreal .service-card__index {
