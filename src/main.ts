@@ -12,6 +12,7 @@ import { initCounters } from "./components/hud-counter"
 import { initEconomiaSection } from "./components/calculator"
 import { initCarousels } from "./components/carousel"
 import { initShowcase } from "./components/showcase"
+import { initProcess } from "./components/process"
 import { initReveals } from "./components/reveal"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -27,6 +28,7 @@ initCounters()
 initEconomiaSection()
 initCarousels()
 initShowcase()
+initProcess()
 initReveals()
 initWhatsappLinks(WHATSAPP_NUMBER, WHATSAPP_MESSAGE)
 

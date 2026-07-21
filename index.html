@@ -387,28 +387,72 @@
 
       <!-- PROCESSO -->
       <section class="section section--dark processo">
-        <p class="eyebrow">COMO FUNCIONA</p>
-        <h2 class="section__title">Do processo manual à solução pronta, em três etapas.</h2>
+        <div class="processo-duo">
+          <div class="processo-pin">
+            <p class="eyebrow">COMO FUNCIONA · <span data-process-step>01</span> / 03</p>
+            <h2 class="section__title">Do processo manual à <em class="text-gradient">solução pronta</em>, em três etapas.</h2>
 
-        <ol class="timeline timeline--three">
-          <li class="timeline__item">
-            <span class="timeline__index">01</span>
-            <h3>Entendemos o processo</h3>
-            <p>Conversamos com a empresa para identificar atividades manuais, repetitivas ou que estão consumindo tempo demais.</p>
-          </li>
-          <li class="timeline__item">
-            <span class="timeline__index">02</span>
-            <h3>Criamos a solução</h3>
-            <p>Desenvolvemos uma automação, sistema ou solução inteligente personalizada para aquela necessidade.</p>
-          </li>
-          <li class="timeline__item">
-            <span class="timeline__index">03</span>
-            <h3>Entregamos e acompanhamos</h3>
-            <p>Implementamos a solução, orientamos a utilização e acompanhamos seu funcionamento.</p>
-          </li>
-        </ol>
+            <div class="process-tabs" aria-hidden="true">
+              <span class="is-active">Diagnóstico</span>
+              <span>Construção</span>
+              <span>Entrega</span>
+            </div>
 
-        <a class="btn btn--primary processo__cta" data-whatsapp data-whatsapp-message="Olá! Gostaria de analisar quais processos da minha empresa podem ser automatizados pela ConstelaTech." href="#" target="_blank" rel="noopener">Quero analisar meus processos</a>
+            <div class="process-note">
+              <strong>Três etapas, <em>um responsável só</em>.</strong>
+              <p>Você fala direto com quem desenvolve — sem intermediário, sem telefone sem fio. Uma conversa, um combinado, um resultado.</p>
+            </div>
+
+            <a class="btn btn--primary processo__cta" data-whatsapp data-whatsapp-message="Olá! Gostaria de analisar quais processos da minha empresa podem ser automatizados pela ConstelaTech." href="#" target="_blank" rel="noopener">Quero analisar meus processos</a>
+          </div>
+
+          <ol class="process-steps">
+            <li class="step-card">
+              <div class="step-card__top">
+                <span class="step-card__index">01</span>
+                <span class="step-card__tag">ETAPA · DIAGNÓSTICO</span>
+              </div>
+              <h3>Entendemos o seu processo <em>por dentro</em>.</h3>
+              <p>Tudo começa com uma conversa direta, sem tecniquês. Queremos entender como o trabalho acontece hoje na sua empresa: quais tarefas consomem horas da equipe, onde os erros mais se repetem, quais planilhas e sistemas não conversam entre si e o que está travando o crescimento. A partir daí, mapeamos os gargalos e apontamos onde a automação traz retorno mais rápido — com prioridades claras e sem empurrar nada que você não precisa.</p>
+              <div class="step-card__chips">
+                <span class="chip"><i>Formato</i>Conversa direta</span>
+                <span class="chip"><i>Foco</i>Gargalos e rotinas</span>
+                <span class="chip"><i>Você recebe</i>Diagnóstico priorizado</span>
+                <span class="chip"><i>Custo</i>Sem compromisso</span>
+              </div>
+            </li>
+
+            <li class="step-card step-card--boreal">
+              <div class="step-card__top">
+                <span class="step-card__index">02</span>
+                <span class="step-card__tag">ETAPA · CONSTRUÇÃO</span>
+              </div>
+              <h3>Criamos a solução <em>sob medida</em>.</h3>
+              <p>Com o diagnóstico em mãos, desenhamos a solução certa para o seu caso — automação de rotina, sistema personalizado, site profissional ou agente de IA. Você acompanha a evolução de perto e valida cada marco antes de seguirmos adiante: nada de sumir por semanas e voltar com algo pronto que não era o que você pediu. O escopo combinado é o escopo entregue.</p>
+              <div class="step-card__chips">
+                <span class="chip"><i>Processo</i>Marcos validados</span>
+                <span class="chip"><i>Você vê</i>Prévia funcionando</span>
+                <span class="chip"><i>Tecnologia</i>Stack moderno</span>
+                <span class="chip"><i>Escopo</i>Sem surpresa</span>
+              </div>
+            </li>
+
+            <li class="step-card">
+              <div class="step-card__top">
+                <span class="step-card__index">03</span>
+                <span class="step-card__tag">ETAPA · ENTREGA</span>
+              </div>
+              <h3>Entregamos, treinamos e <em>seguimos por perto</em>.</h3>
+              <p>A solução entra no ar funcionando de verdade — e você não fica sozinho depois. Treinamos você e sua equipe para o uso no dia a dia, deixamos tudo documentado e continuamos acompanhando: monitoramos o funcionamento, ajustamos o que for preciso e sugerimos as próximas melhorias conforme a sua operação cresce. Suporte que continua depois da entrega, não que desaparece com ela.</p>
+              <div class="step-card__chips">
+                <span class="chip"><i>Go-live</i>Funcionando de verdade</span>
+                <span class="chip"><i>Treinamento</i>Incluído</span>
+                <span class="chip"><i>Suporte</i>Pós-entrega</span>
+                <span class="chip"><i>Evolução</i>Melhorias contínuas</span>
+              </div>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <!-- SOBRE -->
@@ -416,9 +460,8 @@
         <p class="eyebrow">QUEM ESTÁ POR TRÁS DA CONSTELATECH</p>
         <div class="sobre-grid">
           <div class="sobre__media">
-            <div class="sobre__photo" aria-hidden="true">
-              <span class="sobre__photo-initials">LS</span>
-              <span class="sobre__photo-caption">Foto profissional em breve</span>
+            <div class="sobre__photo">
+              <img src="/sobre-luciana.jpg" alt="Luciana Sousa, fundadora da ConstelaTech" loading="lazy" />
             </div>
           </div>
           <div class="sobre__body">

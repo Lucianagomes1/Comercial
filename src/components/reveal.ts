@@ -45,7 +45,6 @@ export function initReveals() {
   const staggerGroups: [string, string][] = [
     [".beneficios-grid", ".beneficio-card"],
     [".carousel__track", ".service-card"],
-    [".timeline--three", ".timeline__item"],
     [".casos-duo", ":scope > *"],
     [".sobre-grid", ":scope > *"],
   ]
