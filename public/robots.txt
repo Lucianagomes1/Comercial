@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://constelatech.com.br/sitemap.xml
+Sitemap: https://www.constelatech.com.br/sitemap.xml
