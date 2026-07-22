@@ -487,6 +487,9 @@ button {
   border-radius: inherit;
   padding: 1.5px;
   background: var(--accent-gradient);
+  /* espaço extra para o gradiente "correr" pela borda na animação de hover */
+  background-size: 220% 100%;
+  background-position: 0% 50%;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -498,8 +501,23 @@ button {
   transition: filter 0.35s var(--ease-out);
 }
 
+/* hover: neon reluzente — o gradiente corre pela borda enquanto o brilho pulsa
+   passando pelas cores da paleta. O filter estático abaixo é o fallback para
+   quem usa prefers-reduced-motion (a animação é desligada globalmente). */
 .nav__cta:hover::before {
-  filter: drop-shadow(0 0 5px rgba(193, 79, 214, 0.7)) drop-shadow(0 0 12px rgba(124, 92, 250, 0.55));
+  filter: drop-shadow(0 0 6px rgba(193, 79, 214, 0.85)) drop-shadow(0 0 14px rgba(124, 92, 250, 0.6));
+  animation: cta-neon 1.9s ease-in-out infinite;
+}
+
+@keyframes cta-neon {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 4px rgba(124, 92, 250, 0.8)) drop-shadow(0 0 10px rgba(224, 64, 158, 0.5));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 8px rgba(224, 64, 158, 0.95)) drop-shadow(0 0 22px rgba(245, 166, 35, 0.6));
+  }
 }
 
 .nav__toggle {
