@@ -485,7 +485,7 @@ button {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 2px;
   background: var(--accent-gradient);
   /* espaço extra para o gradiente "correr" pela borda na animação de hover */
   background-size: 220% 100%;
@@ -505,18 +505,37 @@ button {
    passando pelas cores da paleta. O filter estático abaixo é o fallback para
    quem usa prefers-reduced-motion (a animação é desligada globalmente). */
 .nav__cta:hover::before {
-  filter: drop-shadow(0 0 6px rgba(193, 79, 214, 0.85)) drop-shadow(0 0 14px rgba(124, 92, 250, 0.6));
-  animation: cta-neon 1.9s ease-in-out infinite;
+  /* fallback estático (prefers-reduced-motion): neon aceso forte */
+  filter:
+    brightness(1.35)
+    drop-shadow(0 0 3px rgba(193, 79, 214, 0.95))
+    drop-shadow(0 0 8px rgba(193, 79, 214, 0.85))
+    drop-shadow(0 0 16px rgba(124, 92, 250, 0.7))
+    drop-shadow(0 0 30px rgba(224, 64, 158, 0.55));
+  animation: cta-neon 2s ease-in-out infinite;
 }
 
+/* halo neon reluzente: o brightness "acende" o anel e as camadas de glow com
+   raios crescentes pulsam e trocam de cor pela paleta, dando o efeito de tubo
+   de neon aceso vazando luz para fora da borda */
 @keyframes cta-neon {
   0%, 100% {
     background-position: 0% 50%;
-    filter: drop-shadow(0 0 4px rgba(124, 92, 250, 0.8)) drop-shadow(0 0 10px rgba(224, 64, 158, 0.5));
+    filter:
+      brightness(1.3)
+      drop-shadow(0 0 3px rgba(124, 92, 250, 1))
+      drop-shadow(0 0 8px rgba(124, 92, 250, 0.95))
+      drop-shadow(0 0 18px rgba(193, 79, 214, 0.75))
+      drop-shadow(0 0 34px rgba(124, 92, 250, 0.6));
   }
   50% {
     background-position: 100% 50%;
-    filter: drop-shadow(0 0 8px rgba(224, 64, 158, 0.95)) drop-shadow(0 0 22px rgba(245, 166, 35, 0.6));
+    filter:
+      brightness(1.5)
+      drop-shadow(0 0 3px rgba(224, 64, 158, 1))
+      drop-shadow(0 0 11px rgba(224, 64, 158, 0.95))
+      drop-shadow(0 0 26px rgba(245, 166, 35, 0.8))
+      drop-shadow(0 0 48px rgba(224, 64, 158, 0.65));
   }
 }
 
