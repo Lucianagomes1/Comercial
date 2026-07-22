@@ -5,22 +5,46 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 6rem;
+  padding-top: 7rem;
   overflow: hidden;
 }
 
 .hero__content {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__logo {
+  width: min(30rem, 82%);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.hero__logo img {
+  width: 100%;
+  height: auto;
+}
+
+.hero__logo--transparent {
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.hero__logo--transparent img {
+  filter: drop-shadow(0 12px 40px rgba(124, 92, 250, 0.28));
 }
 
 .hero__title {
   display: flex;
   flex-direction: column;
-  font-size: clamp(3rem, 11vw, 8.5rem);
   font-weight: 700;
-  line-height: 0.92;
   letter-spacing: -0.02em;
-  margin: 0.4rem 0 1.6rem;
+  margin: 0 0 1.4rem;
 }
 
 .hero__title span:last-child {
@@ -31,21 +55,19 @@
 }
 
 .hero__title--sentence {
-  font-size: clamp(1.6rem, 3.8vw, 3.1rem);
-  line-height: 1.16;
+  font-size: clamp(1.5rem, 3vw, 2.6rem);
+  line-height: 1.18;
   max-width: 22ch;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .hero__subtitle {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+  line-height: 1.55;
   color: var(--text-white-dim);
-  max-width: 44ch;
-  margin: 0 auto;
+  max-width: 48ch;
 }
 
 .hero__actions {
@@ -53,51 +75,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2.75rem;
+  margin-top: 2.25rem;
   flex-wrap: wrap;
-}
-
-.hero__hud {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-white-dim);
-}
-
-.hero__hud--eq {
-  top: 7.5rem;
-  right: clamp(1.25rem, 4vw, 3rem);
-  align-items: flex-end;
-}
-
-.eq {
-  display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 26px;
-}
-.eq i {
-  display: block;
-  width: 3px;
-  background: var(--accent-2);
-  border-radius: 2px;
-  animation: eq-bounce 1.1s ease-in-out infinite;
-}
-.eq i:nth-child(1) { height: 40%; animation-delay: -1.1s; }
-.eq i:nth-child(2) { height: 70%; animation-delay: -0.9s; }
-.eq i:nth-child(3) { height: 100%; animation-delay: -0.7s; }
-.eq i:nth-child(4) { height: 55%; animation-delay: -0.5s; }
-.eq i:nth-child(5) { height: 85%; animation-delay: -0.3s; }
-.eq i:nth-child(6) { height: 45%; animation-delay: -0.15s; }
-.eq i:nth-child(7) { height: 65%; animation-delay: 0s; }
-
-@keyframes eq-bounce {
-  0%, 100% { transform: scaleY(0.35); }
-  50% { transform: scaleY(1); }
 }
 
 .hero__stats {
@@ -105,7 +84,7 @@
   display: flex;
   justify-content: center;
   gap: clamp(1.75rem, 5vw, 4.5rem);
-  margin-top: clamp(3rem, 7vw, 5.5rem);
+  margin-top: clamp(3rem, 6vw, 4.5rem);
   flex-wrap: wrap;
 }
 
@@ -227,11 +206,17 @@
 
 /* ===================== ECONOMIA ===================== */
 
-.economia__title,
-.economia__lede {
+/* seção centralizada por design — precisa vencer o alinhamento à esquerda
+   global de `.section > .section__title` (mesma especificidade, vence na ordem) */
+.economia .section__title,
+.economia .section__lede {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.economia > .eyebrow {
+  text-align: center;
 }
 
 .econ-single {
@@ -1069,6 +1054,7 @@
   text-align: center;
 }
 
+.contato .section__title,
 .contato .section__lede {
   margin-left: auto;
   margin-right: auto;
@@ -1089,10 +1075,16 @@
   max-width: var(--container);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 0.8fr 0.8fr 0.8fr;
+  grid-template-columns: 1.6fr 0.9fr 0.9fr 0.9fr;
   align-items: start;
   gap: 2rem;
   padding-bottom: 2.5rem;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
 }
 
 .footer__col {
@@ -1117,6 +1109,12 @@
 }
 .footer__col a:hover {
   color: var(--text-white);
+}
+
+.footer__desc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .footer__desc {
@@ -1187,10 +1185,6 @@
 
   .casos-duo {
     grid-template-columns: 1fr;
-  }
-
-  .hero__hud {
-    display: none;
   }
 }
 

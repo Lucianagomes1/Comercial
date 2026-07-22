@@ -13,13 +13,13 @@ export function initReveals() {
   // ----- Entrada do hero (acompanha o globo se formando) -----
   const intro = gsap.timeline({ defaults: { ease: easeOut } })
   intro
-    .from(".hero .eyebrow", { y: 24, opacity: 0, duration: 0.9 }, 0.35)
-    .from(".hero__title span", { y: 46, opacity: 0, duration: 1.1, stagger: 0.16 }, 0.5)
-    .from(".hero__subtitle", { y: 28, opacity: 0, duration: 0.9 }, 1.0)
-    .from(".hero__actions .btn", { y: 22, opacity: 0, duration: 0.7, stagger: 0.1 }, 1.25)
-    .from(".hero__stats .stat", { y: 26, opacity: 0, duration: 0.7, stagger: 0.12 }, 1.45)
-    .from(".hero__hud--eq", { opacity: 0, duration: 1 }, 1.6)
-    .from(".scroll-cue", { opacity: 0, duration: 1 }, 1.8)
+    .from(".hero__logo", { y: 30, opacity: 0, scale: 0.96, duration: 1.1 }, 0.2)
+    .from(".hero .eyebrow", { y: 24, opacity: 0, duration: 0.9 }, 0.55)
+    .from(".hero__title span", { y: 46, opacity: 0, duration: 1.1, stagger: 0.16 }, 0.7)
+    .from(".hero__subtitle", { y: 28, opacity: 0, duration: 0.9 }, 1.2)
+    .from(".hero__actions .btn", { y: 22, opacity: 0, duration: 0.7, stagger: 0.1 }, 1.45)
+    .from(".hero__stats .stat", { y: 26, opacity: 0, duration: 0.7, stagger: 0.12 }, 1.65)
+    .from(".scroll-cue", { opacity: 0, duration: 1 }, 1.9)
 
   // ----- Cabeçalhos de seção (eyebrow + título + lede) -----
   gsap.utils.toArray<HTMLElement>("main .section:not(.hero)").forEach((section) => {

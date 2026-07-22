@@ -151,11 +151,23 @@ button {
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.01em;
-  max-width: 24ch;
+  /* limite de leitura (24ch), mas nunca maior que o container — no celular
+     isso preserva a margem lateral em vez de o texto encostar nas bordas */
+  max-width: min(24ch, var(--container));
 }
 
 .section__title--dark {
   color: var(--text-black);
+}
+
+/* Cabeçalhos de seção: título e lede são mais estreitos que o container, então
+   o margin auto de `.section > *` os centraliza e os desalinha do eyebrow e do
+   conteúdo. Aqui ancoramos a borda esquerda no mesmo recuo do container. Só
+   filhos diretos da seção — títulos aninhados (ex.: .casos-copy) ficam de fora. */
+.section > .section__title,
+.section > .section__lede {
+  margin-left: calc((100% - var(--container)) / 2);
+  margin-right: auto;
 }
 
 .text-gradient {
@@ -171,7 +183,7 @@ button {
 
 .section__lede {
   margin-top: 1.5rem;
-  max-width: 56ch;
+  max-width: min(56ch, var(--container));
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-white-dim);
@@ -429,14 +441,23 @@ button {
   content: "";
   position: absolute;
   left: 0;
-  right: 100%;
+  right: 0;
   bottom: 0;
-  height: 1px;
-  background: currentColor;
-  transition: right 0.3s var(--ease-out);
+  height: 2px;
+  border-radius: 2px;
+  /* gradiente fixo da marca (roxo → magenta → pink → amarelo); a animação
+     apenas revela a linha da esquerda para a direita, então as cores
+     "passam" na ordem da paleta conforme a linha aparece */
+  background: var(--accent-gradient);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.4s var(--ease-out);
+  /* escapa do mix-blend-mode: difference do nav para o gradiente da paleta
+     renderizar com as cores reais, inclusive sobre seções claras */
+  mix-blend-mode: normal;
+  isolation: isolate;
 }
 .nav__links a:hover::after {
-  right: 0;
+  clip-path: inset(0 0 0 0);
 }
 
 .nav__cta {
