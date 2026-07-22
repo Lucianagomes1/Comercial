@@ -25,3 +25,6 @@ dist-ssr
 
 # Claude Code (configuração local)
 .claude/
+
+# Kit-fonte da marca (o site usa apenas as cópias em public/brand)
+brand-kit-canva/
