@@ -461,9 +461,45 @@ button {
 }
 
 .nav__cta {
-  border: 1px solid var(--line-dark);
+  position: relative;
+  border: 0;
   border-radius: 999px;
-  padding: 0.5rem 1.1rem;
+}
+
+/* padding simétrico p/ centralizar o texto — vence o padding-bottom: 2px de
+   `.nav__links a` (que existe só para caber a linha animada dos outros itens) */
+.nav__links a.nav__cta {
+  padding: 0.55rem 1.25rem;
+}
+
+/* remove a linha animada de hover neste botão */
+.nav__cta::after {
+  display: none;
+}
+
+/* borda em gradiente da paleta (técnica de máscara p/ acompanhar o raio da
+   pílula), isolada do mix-blend-mode: difference do nav para as cores saírem
+   fiéis em qualquer seção; o brilho segue o formato da borda via drop-shadow */
+.nav__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--accent-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          mask-composite: exclude;
+  mix-blend-mode: normal;
+  isolation: isolate;
+  pointer-events: none;
+  filter: drop-shadow(0 0 2px rgba(124, 92, 250, 0.3));
+  transition: filter 0.35s var(--ease-out);
+}
+
+.nav__cta:hover::before {
+  filter: drop-shadow(0 0 5px rgba(193, 79, 214, 0.7)) drop-shadow(0 0 12px rgba(124, 92, 250, 0.55));
 }
 
 .nav__toggle {
