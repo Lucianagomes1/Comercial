@@ -1,3 +1,11 @@
 {
-  "cleanUrls": true
+    "cleanUrls": true,
+    "redirects": [
+          {
+                  "source": "/:path*",
+                  "has": [{ "type": "host", "value": "conecta.constelatech.com.br" }],
+                  "destination": "https://www.constelatech.com.br/links",
+                  "permanent": false
+          }
+    ]
 }
