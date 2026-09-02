@@ -1,11 +1,17 @@
 {
-    "cleanUrls": true,
-    "redirects": [
-          {
-                  "source": "/:path*",
-                  "has": [{ "type": "host", "value": "conecta.constelatech.com.br" }],
-                  "destination": "https://www.constelatech.com.br/links",
-                  "permanent": false
-          }
-    ]
+      "cleanUrls": true,
+      "redirects": [
+              {
+                        "source": "/",
+                        "has": [{ "type": "host", "value": "conecta.constelatech.com.br" }],
+                        "destination": "https://www.constelatech.com.br/links",
+                        "permanent": false
+              },
+              {
+                        "source": "/:path*",
+                        "has": [{ "type": "host", "value": "conecta.constelatech.com.br" }],
+                        "destination": "https://www.constelatech.com.br/links",
+                        "permanent": false
+              }
+      ]
 }
