@@ -7,6 +7,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         links: resolve(__dirname, "links.html"),
+        formulario: resolve(__dirname, "formulario.html"),
+        obrigado: resolve(__dirname, "obrigado.html"),
       },
     },
   },

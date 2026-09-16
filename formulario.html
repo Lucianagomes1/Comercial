@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Levantamento de informações para configurar o assistente de IA da sua empresa no WhatsApp." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#050505" />
+    <link rel="canonical" href="https://www.constelatech.com.br/formulario" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300..400&display=swap" rel="stylesheet" />
+
+    <title>ConstelaTech — Levantamento para o assistente de IA</title>
+  </head>
+  <body class="formulario-page">
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <main class="formulario-shell" aria-labelledby="formulario-title">
+      <section class="formulario-card" aria-label="Levantamento para o assistente de IA">
+        <a class="formulario-logo" href="/" aria-label="Voltar para o site da ConstelaTech">
+          <img src="/brand/logo-horizontal-transparente.png" alt="ConstelaTech" width="2400" height="908" />
+        </a>
+
+        <p class="formulario-eyebrow">LEVANTAMENTO</p>
+        <h1 id="formulario-title">Levantamento para o seu assistente de IA</h1>
+        <p class="formulario-lede">Preencha com as informações do seu negócio. Isso vai virar o "conhecimento" do assistente que vai atender seus clientes pelo WhatsApp.</p>
+
+        <form class="formulario-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="18fee0a2-3eeb-4287-9094-e1886652755f" />
+          <input type="hidden" name="subject" value="Novo levantamento - assistente de IA" />
+          <input type="hidden" name="redirect" value="https://www.constelatech.com.br/obrigado" />
+          <input type="checkbox" name="botcheck" class="formulario-honeypot" tabindex="-1" autocomplete="off" />
+
+          <div class="formulario-field">
+            <label for="empresa">Nome da empresa</label>
+            <input type="text" id="empresa" name="nome_empresa" required />
+          </div>
+
+          <div class="formulario-field">
+            <label for="segmento">Ramo de atuação</label>
+            <p class="formulario-hint">Ex: concessionária de vans, clínica odontológica, loja de roupas</p>
+            <input type="text" id="segmento" name="segmento" />
+          </div>
+
+          <div class="formulario-field">
+            <label for="responsavel">Seu nome</label>
+            <input type="text" id="responsavel" name="nome_responsavel" required />
+          </div>
+
+          <div class="formulario-field">
+            <label for="email">Seu e-mail</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="formulario-field">
+            <label for="telefone">Telefone / WhatsApp de contato</label>
+            <input type="tel" id="telefone" name="telefone" />
+          </div>
+
+          <div class="formulario-field">
+            <label for="endereco">Endereço(s) de atendimento</label>
+            <input type="text" id="endereco" name="endereco" />
+          </div>
+
+          <div class="formulario-field">
+            <label for="horario">Horário de atendimento humano</label>
+            <p class="formulario-hint">Quando um vendedor de verdade está disponível</p>
+            <input type="text" id="horario" name="horario_atendimento" />
+          </div>
+
+          <div class="formulario-field">
+            <label for="tom">Tom de voz desejado</label>
+            <select id="tom" name="tom_de_voz">
+              <option value="Cordial e direto">Cordial e direto</option>
+              <option value="Formal">Formal</option>
+              <option value="Descontraído">Descontraído</option>
+              <option value="Outro">Outro (explique abaixo)</option>
+            </select>
+          </div>
+
+          <div class="formulario-field">
+            <label for="catalogo">Catálogo de produtos ou serviços</label>
+            <p class="formulario-hint">Nome, preço (ou faixa) e principais características de cada item</p>
+            <textarea id="catalogo" name="catalogo" required></textarea>
+          </div>
+
+          <div class="formulario-field">
+            <label for="pagamento">Condições de pagamento</label>
+            <p class="formulario-hint">Formas aceitas, financiamento, desconto à vista, etc.</p>
+            <textarea id="pagamento" name="condicoes_pagamento"></textarea>
+          </div>
+
+          <div class="formulario-field">
+            <label for="faq">Perguntas frequentes</label>
+            <p class="formulario-hint">Liste de 5 a 10 perguntas que os clientes mais fazem hoje, com a resposta de vocês</p>
+            <textarea id="faq" name="perguntas_frequentes" required></textarea>
+          </div>
+
+          <div class="formulario-field">
+            <label for="restricoes">O que o assistente NÃO pode fazer</label>
+            <p class="formulario-hint">Ex: não fecha venda, não dá desconto, não confirma reserva</p>
+            <textarea id="restricoes" name="restricoes"></textarea>
+          </div>
+
+          <div class="formulario-field">
+            <label for="escalonamento">Contato humano para reclamações ou negociação</label>
+            <input type="text" id="escalonamento" name="contato_escalonamento" />
+          </div>
+
+          <div class="formulario-field">
+            <label for="observacoes">Alguma outra informação importante?</label>
+            <textarea id="observacoes" name="observacoes"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--large formulario-submit">Enviar levantamento</button>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="/src/formulario.ts"></script>
+  </body>
+</html>
