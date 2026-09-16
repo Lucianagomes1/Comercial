@@ -118,13 +118,18 @@
   .formulario-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    align-items: start;
+    align-items: stretch;
     gap: 1.25rem 1.75rem;
   }
 
   .formulario-field:has(textarea),
   .formulario-submit {
     grid-column: 1 / -1;
+  }
+
+  .formulario-field input,
+  .formulario-field select {
+    margin-top: auto;
   }
 }
 
