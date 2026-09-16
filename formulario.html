@@ -75,12 +75,17 @@
 
           <div class="formulario-field">
             <label for="tom">Tom de voz desejado</label>
-            <select id="tom" name="tom_de_voz">
+            <select id="tom" name="tom_de_voz" data-tom-select>
               <option value="Cordial e direto">Cordial e direto</option>
               <option value="Formal">Formal</option>
               <option value="Descontraído">Descontraído</option>
               <option value="Outro">Outro (explique abaixo)</option>
             </select>
+          </div>
+
+          <div class="formulario-field formulario-field--full" data-tom-outro hidden>
+            <label for="tom-outro">Descreva o tom de voz desejado</label>
+            <input type="text" id="tom-outro" name="tom_de_voz_outro" placeholder="Ex: divertido, técnico, jovem..." />
           </div>
 
           <div class="formulario-field">

@@ -123,6 +123,7 @@
   }
 
   .formulario-field:has(textarea),
+  .formulario-field--full,
   .formulario-submit {
     grid-column: 1 / -1;
   }
